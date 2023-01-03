@@ -9,14 +9,17 @@
     "counterModel.js"(exports, module) {
       var CounterModel2 = class {
         constructor() {
+          console.log("Hello Mike!");
           this.counter = 0;
-          console.log("hey");
         }
         getCounter() {
           return this.counter;
         }
         increment() {
           this.counter++;
+        }
+        decrement() {
+          this.counter--;
         }
       };
       module.exports = CounterModel2;
@@ -32,6 +35,11 @@
           const incrementButtonEl = document.querySelector("#increment-btn");
           incrementButtonEl.addEventListener("click", () => {
             this.model.increment();
+            this.display();
+          });
+          const decrementButtonEl = document.querySelector("#decrement-btn");
+          decrementButtonEl.addEventListener("click", () => {
+            this.model.decrement();
             this.display();
           });
         }
