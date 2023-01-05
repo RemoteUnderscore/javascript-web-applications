@@ -12,17 +12,17 @@ describe('Notes view', () => {
     document.body.innerHTML = fs.readFileSync('./index.html');
   });
 
-  xit('displays a note', () => {
+  it('displays a note', () => {
     const model = new NotesModel();
     const view = new NotesView(model);
-    notes.addNote('First note');
+    model.addNote('First note');
 
     view.displayNotes();
 
     expect(document.querySelectorAll('div.note').length).toEqual(1);
   });
 
-  xit('displays 2 notes', () => {
+  it('displays 2 notes', () => {
     const model = new NotesModel();
     const view = new NotesView(model);
     model.addNote('First note');
@@ -34,6 +34,7 @@ describe('Notes view', () => {
   });
 
   it('adds a new note', () => {
+    
     const model = new NotesModel();
     const view = new NotesView(model);
 
@@ -46,4 +47,17 @@ describe('Notes view', () => {
     expect(document.querySelectorAll('div.note').length).toEqual(1);
     expect(document.querySelectorAll('div.note')[0].textContent).toEqual('Test note');
   });
+
+  it('clears the previous notes', () => {
+    const model = new NotesModel();
+    const view = new NotesView(model);
+
+    model.addNote('Test one');
+    model.addNote('Test two');
+
+    view.displayNotes();
+    view.displayNotes();
+
+    expect(document.querySelectorAll('div.note').length).toEqual(2);
+  })
 });
